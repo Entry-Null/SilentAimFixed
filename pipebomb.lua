@@ -97,9 +97,9 @@ return Closest
 end
 
 
-local Window = Library:CreateWindow("🤓 'guys blm!!!' ")
+local Window = Library:CreateWindow("🤓 'you're hacking!!12!' ")
 
-local GeneralTab = Window:AddTab("General")
+local GeneralTab = Window:AddTab("Aimbot")
 local AATab = Window:AddTab("Anti Aim")
 local MainBOX = GeneralTab:AddLeftTabbox("Main")
 local AABOX = AATab:AddLeftTabbox("Advanced Config")
@@ -119,7 +119,7 @@ ADAntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default 
 ADAntiAim:AddButton("False Lower", function()
     while Toggles.aaing do
         local args = {
-            [1] = Functions.FakeduckResolve(140000 * math.cos(math.pi / Options.reciprocal) ^ math.deg(Options.reciprocal^math.rad(Options.reciprocal)))
+            [1] = Functions.FakeduckResolve(math.huge * math.cos(math.pi * Options.reciprocal) ^ math.deg(Options.reciprocal^math.rad(Options.reciprocal)))
         }
         
         game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
@@ -306,7 +306,7 @@ while Toggles.aaing do
             game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
         else
             local args = {
-                [1] = Options.angle2.Value * Functions.Default(math.deg(0.2, 0.6))
+                [1] = Options.angle2.Value ^ Functions.Default(math.deg(0.2, 0.6))
             }
             
             game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
