@@ -58,12 +58,14 @@ local function getMousePosition()
 return Vector2.new(Mouse.X, Mouse.Y)
 end
 
-local function getClosestPlayer()
+local function getClosestPlayer() 
 if not Options.TargetPart.Value then return end
 local Closest
 local DistanceToMouse
 for _, Player in next, GetChildren(Players) do
-    if Player == LocalPlayer then continue end
+    if Player == LocalPlayer then 
+        continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
+    end
     if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then continue end
 
     local Character = Player.Character
@@ -98,17 +100,21 @@ local Window = Library:CreateWindow("🤓 'guys blm!!!' ")
 local GeneralTab = Window:AddTab("General")
 local AATab = Window:AddTab("Anti Aim")
 local MainBOX = GeneralTab:AddLeftTabbox("Main")
-local AABOX = AATab:AddLeftTabbox("Anti Aim Config")
+local AABOX = AATab:AddLeftTabbox("Advanced Config")
+
+local ADABOX = AATab:AddRightTabbox("Advanced Config")
 do
 local AntiAim = AABOX:AddTab("Anti Aim")
+local ADAntiAim = ADABOX:AddTab("Advanced Config")
+
 AntiAim:AddToggle("aaing", {Text = "Enabled"})
 AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
 AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = 0, Max = -10, Default = 0, Rounding = 0})
 AntiAim:AddSlider("angle2", {Text = "Up Pitch Perpendicular", Min = -10, Max = 10, Default = 0, Rounding = 0})
-AntiAim:AddToggle("Inverse", {Text = "Inverse (Tanget Fallacy)"})
-AntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default = "0"})
-AntiAim:AddButton("Fake Duck", function()
+ADAntiAim:AddToggle("Inverse", {Text = "Inverse (Tanget Fallacy)"})
+ADAntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default = "0"})
+ADAntiAim:AddButton("False Lower", function()
     while Toggles.aaing do
         local args = {
             [1] = Functions.FakeduckResolve(140000 * math.cos(math.pi / Options.reciprocal) ^ math.deg(Options.reciprocal^math.rad(Options.reciprocal)))
