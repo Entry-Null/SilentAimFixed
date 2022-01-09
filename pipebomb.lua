@@ -88,6 +88,18 @@ AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
 AntiAim:AddSlider("angle", {Text = "Real Pitch Adjustment", Min = 0, Max = -6, Default = 0, Rounding = 0})
 AntiAim:AddSlider("angle2", {Text = "Fake Pitch Adjustment", Min = -4, Max = 6, Default = 0, Rounding = 0})
+AntiAim:AddButton("Fake Duck", function()
+    while Toggles.aaing do
+        Options.angle2 = -math.huge
+    end
+end)
+
+AntiAim:AddButton("VFake Duck", function()
+    while Toggles.aaing do
+        Options.angle1 = math.huge
+    end
+end)
+
 
 local Main = MainBOX:AddTab("Main")
 Main:AddToggle("aim_Enabled", {Text = "Enabled"})
