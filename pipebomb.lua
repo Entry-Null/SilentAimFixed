@@ -86,8 +86,8 @@ local AntiAim = AABOX:AddTab("Anti Aim")
 AntiAim:AddToggle("aaing", {Text = "Enabled"})
 AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
-AntiAim:AddSlider("angle", {Text = "Angle Adjustment", Min = -4, Max = 4, Default = 0, Rounding = 0})
-AntiAim:AddSlider("angle2", {Text = "Second Angle Adjustment", Min = -4, Max = 4, Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle", {Text = "Real Pitch Adjustment", Min = 0, Max = -6, Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle2", {Text = "Fake Pitch Adjustment", Min = -4, Max = 6, Default = 0, Rounding = 0})
 
 local Main = MainBOX:AddTab("Main")
 Main:AddToggle("aim_Enabled", {Text = "Enabled"})
