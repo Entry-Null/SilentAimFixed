@@ -111,18 +111,7 @@ AntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default = 
 AntiAim:AddButton("Fake Duck", function()
     while Toggles.aaing do
         local args = {
-            [1] = Functions.FakeduckResolve(140000 * math.cos(math.pi / Options.reciprocal))
-        }
-        
-        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
-        wait()
-    end
-end)
-
-AntiAim:AddButton("VFake Duck", function()
-    while Toggles.aaing do
-        local args = {
-            [1] = Functions.FakeduckResolve(-140000 / math.cos(math.pi / Options.reciprocal))
+            [1] = Functions.FakeduckResolve(140000 * math.cos(math.pi / Options.reciprocal) ^ math.deg(Options.reciprocal^math.rad(Options.reciprocal)))
         }
         
         game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
