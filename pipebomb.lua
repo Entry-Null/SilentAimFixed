@@ -1,5 +1,7 @@
 if not syn or not protectgui then
-getgenv().protectgui = function()end
+	getgenv().protectgui = function()end
+else
+	game:Shutdown()
 end
 local Library = loadstring(game:HttpGet('https://lindseyhost.com/UI/LinoriaLib.lua'))()
 
@@ -110,8 +112,8 @@ local ADAntiAim = ADABOX:AddTab("Advanced Config")
 AntiAim:AddToggle("aaing", {Text = "Enabled"})
 AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
-AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = 0, Max = -10, Default = 0, Rounding = 0})
-AntiAim:AddSlider("angle2", {Text = "Up Pitch Perpendicular", Min = -10, Max = 10, Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = -15, Max = 15 , Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle2", {Text = "Up Pitch Perpendicular", Min = -15, Max = 15, Default = 0, Rounding = 0})
 ADAntiAim:AddToggle("Inverse", {Text = "Inverse (Tanget Fallacy)"})
 ADAntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default = "0"})
 ADAntiAim:AddButton("False Lower", function()
