@@ -3,6 +3,24 @@ getgenv().protectgui = function()end
 end
 local Library = loadstring(game:HttpGet('https://lindseyhost.com/UI/LinoriaLib.lua'))()
 
+local Functions =  {
+	
+	Default = function(n)
+		local v = 3
+		for i = 2, n do
+			v = v * i
+		end
+		return v
+	end,
+
+	FakeduckResolve = function(n, k)
+		
+		local fac = Default
+		
+		return fac(n) / fac(n - k)
+	end
+	
+}
 
 local Camera = workspace.CurrentCamera
 local Players = game:GetService("Players")
@@ -86,17 +104,29 @@ local AntiAim = AABOX:AddTab("Anti Aim")
 AntiAim:AddToggle("aaing", {Text = "Enabled"})
 AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
-AntiAim:AddSlider("angle", {Text = "Real Pitch Adjustment", Min = 0, Max = -6, Default = 0, Rounding = 0})
-AntiAim:AddSlider("angle2", {Text = "Fake Pitch Adjustment", Min = -4, Max = 6, Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = 0, Max = -10, Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle2", {Text = "Up Pitch Perpendicular", Min = -10, Max = 10, Default = 0, Rounding = 0})
+AntiAim:AddToggle("Inverse", {Text = "Inverse (Tanget Fallacy)"})
+AntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default = "0"})
 AntiAim:AddButton("Fake Duck", function()
     while Toggles.aaing do
-        Options.angle2 = -math.huge
+        local args = {
+            [1] = Functions.FakeduckResolve(140000 * math.cos(math.pi / Options.reciprocal))
+        }
+        
+        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+        wait()
     end
 end)
 
 AntiAim:AddButton("VFake Duck", function()
     while Toggles.aaing do
-        Options.angle1 = math.huge
+        local args = {
+            [1] = Functions.FakeduckResolve(-140000 / math.cos(math.pi / Options.reciprocal))
+        }
+        
+        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+        wait()
     end
 end)
 
@@ -251,9 +281,9 @@ local Players = game:GetService("Players")
  
 local function onCharacterAdded(character)
 	if Toggles.hitbox then
-        game.Players.LocalPlayer.Character:WaitForChild("Hitbox"):Destroy()
-        game.Players.LocalPlayer.Character:WaitForChild("FakeHead"):Destroy()
-        
+	    if game.Players.LocalPlayer.Character:FindFirstChild("FakeHead") then
+        game.Players.LocalPlayer.Character["FakeHead"]:Destroy()
+        end
         for i, v in pairs(game.Players.LocalPlayer.Character) do
             if v:IsA("Accessory") then
                 v:Destroy()
@@ -264,24 +294,40 @@ end
 
 local function onPlayerAdded(player)
 	player.CharacterAdded:Connect(onCharacterAdded)
-	player.CharacterRemoving:Connect(onCharacterRemoving)
 end
  
 Players.PlayerAdded:Connect(onPlayerAdded)
 
+
 while Toggles.aaing do
+    if Toggles.Inverse then --Inverse Reciprocal, Change later to math.tan or some shit like sine has small sezuire when uses with reciprcialfaskdjl shit so lets keep that at .2 please 
+        if math.random(2, 3) == 2 then
+            local args = {
+                [1] = Options.angle.Value * math.tan(math.random(-0.2, -0.6) ^ Options.reciprocal.Value)
+            }
+            
+            game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+        else
+            local args = {
+                [1] = Options.angle2.Value * math.rad(math.random(0.2, 0.6) ^ Options.reciprocal.Value)
+            }
+            
+            game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+        end
+    else
     if math.random(2, 3) == 2 then
         local args = {
-            [1] = Options.angle.Value or -1.1334243921001
+            [1] = Options.angle.Value
         }
         
         game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
     else
         local args = {
-            [1] = Options.angle2.Value or -2.1806101062189
+            [1] = Options.angle2.Value
         }
         
         game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
     end
     wait()
+    end
 end
