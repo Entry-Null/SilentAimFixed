@@ -86,6 +86,9 @@ local AntiAim = AABOX:AddTab("Anti Aim")
 AntiAim:AddToggle("aaing", {Text = "Enabled"})
 AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
+AntiAim:AddSlider("angle", {Text = "Angle Adjustment", Min = -4, Max = 4, Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle2", {Text = "Second Angle Adjustment", Min = -4, Max = 4, Default = 0, Rounding = 0})
+
 local Main = MainBOX:AddTab("Main")
 Main:AddToggle("aim_Enabled", {Text = "Enabled"})
 Main:AddToggle("TeamCheck", {Text = "Team Check"})
@@ -116,6 +119,7 @@ Main:AddToggle("fov_Enabled", {Text = "Enabled"})
 Main:AddSlider("Radius", {Text = "Radius", Min = 0, Max = 360, Default = 180, Rounding = 0}):OnChanged(function()
     fov_circle.Radius = Options.Radius.Value
 end)
+
 Main:AddToggle("Visible", {Text = "Visible"}):AddColorPicker("Color", {Default = Color3.fromRGB(54, 57, 241)}):OnChanged(function()
     fov_circle.Visible = Toggles.Visible.Value
     while Toggles.Visible.Value do
@@ -235,8 +239,8 @@ local Players = game:GetService("Players")
  
 local function onCharacterAdded(character)
 	if Toggles.hitbox then
-        game.Players.LocalPlayer.Character:FindFirstChild("Hitbox"):Destroy()
-        game.Players.LocalPlayer.Character:FindFirstChild("FakeHead"):Destroy()
+        game.Players.LocalPlayer.Character:WaitForChild("Hitbox"):Destroy()
+        game.Players.LocalPlayer.Character:WaitForChild("FakeHead"):Destroy()
         
         for i, v in pairs(game.Players.LocalPlayer.Character) do
             if v:IsA("Accessory") then
@@ -256,13 +260,13 @@ Players.PlayerAdded:Connect(onPlayerAdded)
 while Toggles.aaing do
     if math.random(2, 3) == 2 then
         local args = {
-            [1] = -1.1334243921001
+            [1] = Options.angle.Value or -1.1334243921001
         }
         
         game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
     else
         local args = {
-            [1] = -1.1806101062189
+            [1] = Options.angle2.Value or -2.1806101062189
         }
         
         game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
