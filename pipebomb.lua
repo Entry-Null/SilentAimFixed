@@ -78,8 +78,14 @@ end
 local Window = Library:CreateWindow("🤓 'guys blm!!!' ")
 
 local GeneralTab = Window:AddTab("General")
+local AATab = Window:AddTab("Anti Aim")
 local MainBOX = GeneralTab:AddLeftTabbox("Main")
+local AABOX = AATab:AddLeftTabbox("Anti Aim Config")
 do
+local AntiAim = AABOX:AddTab("Anti Aim")
+AntiAim:AddToggle("aaing", {Text = "Enabled"})
+AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
+
 local Main = MainBOX:AddTab("Main")
 Main:AddToggle("aim_Enabled", {Text = "Enabled"})
 Main:AddToggle("TeamCheck", {Text = "Team Check"})
@@ -224,3 +230,42 @@ end
 
 return oldIndex(self, Index)
 end)
+
+local Players = game:GetService("Players")
+ 
+local function onCharacterAdded(character)
+	if Toggles.hitbox then
+        game.Players.LocalPlayer.Character:FindFirstChild("Hitbox"):Destroy()
+        game.Players.LocalPlayer.Character:FindFirstChild("FakeHead"):Destroy()
+        
+        for i, v in pairs(game.Players.LocalPlayer.Character) do
+            if v:IsA("Accessory") then
+                v:Destroy()
+            end
+        end
+    end
+end
+
+local function onPlayerAdded(player)
+	player.CharacterAdded:Connect(onCharacterAdded)
+	player.CharacterRemoving:Connect(onCharacterRemoving)
+end
+ 
+Players.PlayerAdded:Connect(onPlayerAdded)
+
+while Toggles.aaing do
+    if math.random(2, 3) == 2 then
+        local args = {
+            [1] = -1.1334243921001
+        }
+        
+        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+    else
+        local args = {
+            [1] = -1.1806101062189
+        }
+        
+        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+    end
+    wait()
+end
