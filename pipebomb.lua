@@ -303,17 +303,18 @@ while Toggles.aaing do
     if Toggles.Inverse then --Inverse Reciprocal, Change later to math.tan or some shit like sine has small sezuire when uses with reciprcialfaskdjl shit so lets keep that at .2 please 
         if math.random(2, 3) == 2 then
             local args = {
-                [1] = Options.angle.Value * math.tan(math.random(-0.2, -0.6) ^ Options.reciprocal.Value)
+                [1] = Options.angle.Value * (math.random(-0.2, -0.6) ^ Options.reciprocal.Value)
             }
             
             game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
         else
             local args = {
-                [1] = Options.angle2.Value * math.rad(math.random(0.2, 0.6) ^ Options.reciprocal.Value)
+                [1] = Options.angle2.Value * (math.random(0.2, 0.6) / Options.reciprocal.Value)
             }
             
             game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
         end
+        wait()
     else
     if math.random(2, 3) == 2 then
         local args = {
