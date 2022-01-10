@@ -112,7 +112,7 @@ local ADAntiAim = ADABOX:AddTab("Advanced Config")
 AntiAim:AddToggle("aaing", {Text = "Enabled"})
 AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
 
-AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = -15, Max = 15 , Default = 0, Rounding = 0})
+AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = 0, Max = -15 , Default = 0, Rounding = 0})
 AntiAim:AddSlider("angle2", {Text = "Up Pitch Perpendicular", Min = -15, Max = 15, Default = 0, Rounding = 0})
 ADAntiAim:AddToggle("Inverse", {Text = "Inverse (Tanget Fallacy)"})
 ADAntiAim:AddInput("reciprocal", {Text = "Inverse Reciprocal Resolver", Default = "0"})
