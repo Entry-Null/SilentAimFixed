@@ -67,45 +67,54 @@ if not syn or not protectgui then
     local function getMousePosition()
     return Vector2.new(Mouse.X, Mouse.Y)
     end
-    
-    local function getClosestPlayer() 
-    if not Options.TargetPart.Value then return end
-    local Closest
-    local DistanceToMouse
-    for _, Player in next, GetChildren(Players) do
-    if Player == LocalPlayer then 
-        continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
-    end
-    if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then continue end
-    
-    local Character = Player.Character
-    
-    if not Character then continue end
-    
-    local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
-    local Humanoid = FindFirstChild(Character, "Humanoid")
-    
-    if not HumanoidRootPart or not Humanoid or Humanoid and Humanoid.Health <= 0 then continue end
-    
-    local ScreenPosition, OnScreen = getPositionOnScreen(HumanoidRootPart.Position)
-    
-    if not OnScreen then continue end
-    
-    local Distance = (getMousePosition() - ScreenPosition).Magnitude
-    if Distance <= (DistanceToMouse or (Toggles.fov_Enabled.Value and Options.Radius.Value) or 2000) then
-        if math.random(1,2) == 2 then
-        Closest = Character[Options.TargetPart.Value]
-        else
-        Closest = Character["Head"]
+    local function getClosestPlayer()
+        if not Options.TargetPart.Value then
+            return
         end
-        DistanceToMouse = Distance
-    end
-    end
-    return Closest
+        local Closest
+        local DistanceToMouse
+        for _, Player in next, GetChildren(Players) do
+            if Player == LocalPlayer then
+                continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
+            end
+            if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then
+                continue
+            end
+    
+            local Character = Player.Character
+    
+            if not Character then
+                continue
+            end
+    
+            local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
+            local Humanoid = FindFirstChild(Character, "Humanoid")
+    
+            if not HumanoidRootPart or not Humanoid or Humanoid and Humanoid.Health <= 0 then
+                continue
+            end
+    
+            local ScreenPosition, OnScreen = getPositionOnScreen(HumanoidRootPart.Position)
+    
+            if not OnScreen then
+                continue
+            end
+    
+            local Distance = (getMousePosition() - ScreenPosition).Magnitude
+            if Distance <= (DistanceToMouse or (Toggles.fov_Enabled.Value and Options.Radius.Value) or 2000) then
+                if math.random(1, 2) == 2 then
+                    Closest = Character[Options.TargetPart.Value]
+                else
+                    Closest = Character["Head"]
+                end
+                DistanceToMouse = Distance
+            end
+        end
+        return Closest
     end
     
     
-    local Window = Library:CreateWindow("Aim Solutions")
+    local Window = Library:CreateWindow("🤓: 'guys how is he hitting me!11'")
     
     local GeneralTab = Window:AddTab("Aimbot")
     local MainBOX = GeneralTab:AddLeftTabbox("Main")
@@ -254,31 +263,56 @@ if not syn or not protectgui then
     
     
     local ExpectedArguments = {
-    FindPartOnRayWithIgnoreList = {
-    ArgCountRequired = 3,
-    Args = {
-        "Instance", "Ray", "table", "boolean", "boolean"
+        FindPartOnRayWithIgnoreList = {
+            ArgCountRequired = 3,
+            Args = {
+                "Instance",
+                "Ray",
+                "table",
+                "boolean",
+                "boolean"
+            }
+        },
+        FindPartOnRayWithWhitelist = {
+            ArgCountRequired = 3,
+            Args = {
+                "Instance",
+                "Ray",
+                "table",
+                "boolean"
+            }
+        },
+        FindPartOnRay = {
+            ArgCountRequired = 2,
+            Args = {
+                "Instance",
+                "Ray",
+                "Instance",
+                "boolean",
+                "boolean"
+            }
+        },
+        Raycast = {
+            ArgCountRequired = 3,
+            Args = {
+                "Instance",
+                "Vector3",
+                "Vector3",
+                "RaycastParams"
+            }
+        },
+        Pixel = {
+            ArgCountRequired = 3,
+            Args = {
+                "Instance",
+                "Ray",
+                "table",
+                "boolean",
+                "boolean"
+            }
+        }
     }
-    },
-    FindPartOnRayWithWhitelist = {
-    ArgCountRequired = 3,
-    Args = {
-        "Instance", "Ray", "table", "boolean"
-    }
-    },
-    FindPartOnRay = {
-    ArgCountRequired = 2,
-    Args = {    
-        "Instance", "Ray", "Instance", "boolean", "boolean"
-    }
-    },
-    Raycast = {
-    ArgCountRequired = 3,
-    Args = {
-        "Instance", "Vector3", "Vector3", "RaycastParams"
-    }
-    }
-    }
+    
     
     
     local oldNamecall
