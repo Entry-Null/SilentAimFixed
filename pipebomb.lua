@@ -400,7 +400,10 @@ while Toggles.aaing do
 		    }
 
 		    game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+		    wait()
 	end
 wait()
 end
+ wait()
 end 
+ wait()
