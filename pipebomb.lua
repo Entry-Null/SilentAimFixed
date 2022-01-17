@@ -6,7 +6,7 @@ if not syn or not protectgui then
     
     local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/UI/main/Meth.lua'))()
     local ESP = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/ESP/main/Terrorism.lua'))()
-    Library:SetWatermark("kd-Solutions | plotting#2399")
+    Library:SetWatermark("black 'lives' matter")
     Library.AccentColor = Color3.fromRGB(222, 37, 0)
     Library.OutlineColor = Color3.fromRGB(10, 10, 10)
     Library.MainColor = Color3.fromRGB(18, 18, 18)
@@ -192,6 +192,7 @@ if not syn or not protectgui then
     AntiAim:AddToggle("aaing", {Text = "Enabled"}):OnChanged(function()
         Library.Notify("Arsenal Only", 10)
      end)
+    
     AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
     
     AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = 0, Max = -15 , Default = 0, Rounding = 0})
@@ -210,7 +211,8 @@ if not syn or not protectgui then
     "Raycast","FindPartOnRay",
     "FindPartOnRayWithWhitelist",
     "FindPartOnRayWithIgnoreList",
-    "Mouse.Hit/Target"
+    "Mouse.Hit/Target",
+    "Pixel"
     }})
     end
     local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
@@ -266,7 +268,7 @@ if not syn or not protectgui then
     },
     FindPartOnRay = {
     ArgCountRequired = 2,
-    Args = {
+    Args = {    
         "Instance", "Ray", "Instance", "boolean", "boolean"
     }
     },
@@ -336,11 +338,25 @@ if not syn or not protectgui then
                 return oldNamecall(unpack(Arguments))
             end
         end
+    elseif Method == "Pixel" and Options.Method.Value == Method then  
+        if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithIgnoreList) then
+            local A_Ray = Arguments[2]
+    
+            local HitPart = getClosestPlayer()
+            if HitPart then
+                local Origin = A_Ray.Origin
+                local Direction = getDirection(Origin, HitPart.Position)
+                Arguments[2] = Ray.new(Origin, Direction)
+    
+                return oldNamecall(unpack(Arguments))
+            end
+        end
     end
     end
     return oldNamecall(...)
     end)
     
+
     local oldIndex = nil 
     oldIndex = hookmetamethod(game, "__index", function(self, Index)
     if self == Mouse and (Index == "Hit" or Index == "Target") then 
