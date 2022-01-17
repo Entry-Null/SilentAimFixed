@@ -361,49 +361,23 @@ player.CharacterAdded:Connect(onCharacterAdded)
 end
 
 Players.PlayerAdded:Connect(onPlayerAdded)
-
-
 while Toggles.aaing do
-	if not Toggles.FalseDuck then
-		if Toggles.Inverse then --Inverse Reciprocal, Change later to math.tan or some shit like sine has small sezuire when uses with reciprcialfaskdjl shit so lets keep that at .2 please 
-		    if math.random(2, 3) == 2 then
-			local args = {
-			    [1] = Options.angle.Value * (math.deg(0.2, 0.6))
-			}
+    if Toggles.FalseDuck == false then
+        local args = {
+            [1] = Options.angle.Value * (math.deg(0.2, 0.6))
+        }
 
-			game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
-		    else
-			local args = {
-			    [1] = Options.angle2.Value ^ Functions.Default(math.deg(0.2, 0.6))
-			}
+        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+        wait()
+    else
+        local args = {
+            [1] = math.huge,
+        }
 
-			game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
-		    end
-		    wait()
-		elseif not Toggles.Inverse then
-		if math.random(2, 3) == 2 then
-		    local args = {
-			[1] = Options.angle.Value
-		    }
-
-		    game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
-		else
-		    local args = {
-			[1] = Options.angle2.Value
-		    }
-
-		    game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
-		end
-	else
-		    local args = {
-			[1] = math.huge
-		    }
-
-		    game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
-		    wait()
-	end
-wait()
+        game:GetService("ReplicatedStorage").Events.ControlTurn:FireServer(unpack(args))
+        wait()
+    end
+    wait()
 end
- wait()
-end 
- wait()
+wait()
+wait()
