@@ -100,7 +100,7 @@ return Closest
 end
 
 
-local Window = Library:CreateWindow("🤓 'you're hacking!!12!' ")
+local Window = Library:CreateWindow("Aim Solutions")
 
 local GeneralTab = Window:AddTab("Aimbot")
 local MainBOX = GeneralTab:AddLeftTabbox("Main")
