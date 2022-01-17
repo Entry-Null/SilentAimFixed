@@ -12,8 +12,7 @@ if not syn or not protectgui then
     Library.MainColor = Color3.fromRGB(18, 18, 18)
     Library.FontColor = Color3.fromRGB(217, 210, 210)
     Library:Notify("HvH Any % Aim Solutions skip", 13)
-    Library:SetWatermarkVisibility(false)
- 
+
     local Functions =  {
     
     Default = function(n)
@@ -180,7 +179,7 @@ if not syn or not protectgui then
      end)
     
      MenuVisual:AddToggle("watermarkShown", {Text = "Draw Watermark"}):OnChanged(function()
-        Library:SetWatermarkVisibility(True)
+        Library.Watermark.Visible = watermarkShown
      end)
     
      
