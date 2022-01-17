@@ -6,13 +6,11 @@ if not syn or not protectgui then
     
     local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/UI/main/Meth.lua'))()
     local ESP = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/ESP/main/Terrorism.lua'))()
-    Library:SetWatermark("kd-Solutions | plotting#2399")
     Library.AccentColor = Color3.fromRGB(222, 37, 0)
     Library.OutlineColor = Color3.fromRGB(10, 10, 10)
     Library.MainColor = Color3.fromRGB(18, 18, 18)
     Library.FontColor = Color3.fromRGB(217, 210, 210)
-    Library:Notify("HvH Any % Aim Solutions skip", 6)
-    Library:SetWatermarkVisibility(false)
+    Library:Notify("HvH Any % Aim Solutions skip", 10)
  
     local Functions =  {
     
@@ -178,8 +176,10 @@ if not syn or not protectgui then
      VisualEsp:AddToggle("TeamHue", {Text = "Team Color"}):OnChanged(function()
         ESP.TeamColor = Toggles.TeamHue.Value 
      end)
+        Library:SetWatermark("kd-Solutions | plotting#2399")
     
      MenuVisual:AddToggle("watermarkShown", {Text = "Draw Watermark"}):OnChanged(function()
+         
         Library:SetWatermarkVisibility(watermarkShown)
      end)
     
