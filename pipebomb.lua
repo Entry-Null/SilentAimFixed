@@ -8,10 +8,10 @@ if not syn or not protectgui then
     local ESP = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/ESP/main/Terrorism.lua'))()
     Library:SetWatermark("kd-Solutions | plotting#2399")
     Library.AccentColor = Color3.fromRGB(222, 37, 0)
-    Library.OutlineColor = Color3.fromRGB(23, 23, 23)
+    Library.OutlineColor = Color3.fromRGB(10, 10, 10)
     Library.MainColor = Color3.fromRGB(18, 18, 18)
     Library.FontColor = Color3.fromRGB(217, 210, 210)
-
+    Library:Notify("HvH Any % Aim Solutions skip", 6)
     Library:SetWatermarkVisibility(false)
  
     local Functions =  {
@@ -113,8 +113,9 @@ if not syn or not protectgui then
     
     local VisualTab = Window:AddTab("Visuals")
     local VisualBOX = VisualTab:AddLeftTabbox("Main")
+    local VisualBOX2 = VisualTab:AddRightTabbox("Menu Config")
     local VisualEsp = VisualBOX:AddTab("Main")
-    
+    local MenuVisual = VisualBOX2:AddTab("Menu Config")
     
     local AATab = Window:AddTab("Anti Aim")
     local AABOX = AATab:AddLeftTabbox("Advanced Config")
@@ -147,7 +148,7 @@ if not syn or not protectgui then
         end
      end)
     
-    ESP:Toggle(false)
+    ESP:Toggle(true)
     
      VisualEsp:AddToggle("ESPToggle", {Text = "Draw ESP"}):OnChanged(function()
         ESP:Toggle(ESPToggle)
@@ -178,6 +179,11 @@ if not syn or not protectgui then
         ESP.TeamColor = Toggles.TeamHue.Value 
      end)
     
+     MenuVisual:AddToggle("watermarkShown", {Text = "Draw Watermark"}):OnChanged(function()
+        Library:SetWatermarkVisibility(watermarkShown)
+     end)
+    
+     
     --End visuals[[
     --]]
     
@@ -387,12 +393,3 @@ if not syn or not protectgui then
     end
     wait()
     wait()
-
-local toggle4d = false
-
-game:service'UserInputService'.InputEnded:connect(function(i)
-    if i.KeyCode == Enum.KeyCode.RightControl then
-        toggle4d = not toggle4d
-        Library:SetWatermarkVisibility(toggle4d)
-    end
-end)
