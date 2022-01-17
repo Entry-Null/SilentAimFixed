@@ -189,7 +189,9 @@ if not syn or not protectgui then
     
     
     
-    AntiAim:AddToggle("aaing", {Text = "Enabled"})
+    AntiAim:AddToggle("aaing", {Text = "Enabled"}):OnChanged(function()
+        Library.Notify("Arsenal Only", 10)
+     end)
     AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
     
     AntiAim:AddSlider("angle", {Text = "Down Pitch Perpendicular", Min = 0, Max = -15 , Default = 0, Rounding = 0})
