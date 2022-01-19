@@ -1,7 +1,7 @@
 if not syn or not protectgui then
 getgenv().protectgui = function()end
 else
-    game.Players.LocalPlayer:Kick("Come out with your hands visible, there are several federal agents surrounding your place of residence.")
+    game.Players.LocalPlayer:Kick("There was one child with down syndrome, there is now none")
 end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/UI/main/Meth.lua'))()
@@ -10,7 +10,7 @@ Library.AccentColor = Color3.fromRGB(222, 37, 0)
 Library.OutlineColor = Color3.fromRGB(10, 10, 10)
 Library.MainColor = Color3.fromRGB(18, 18, 18)
 Library.FontColor = Color3.fromRGB(217, 210, 210)
-Library:Notify("Come out with your hands visible, there are several federal agents surrounding your place of residence.", 13)
+Library:Notify("HvH Any % Aim Solutions skip", 13)
 
 local Functions =  {
 
@@ -76,6 +76,9 @@ local function getClosestPlayer()
         if Player == LocalPlayer then
             continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
         end
+        if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then
+            continue
+        end
 
         local Character = Player.Character
 
@@ -83,7 +86,19 @@ local function getClosestPlayer()
         if not Character then
             continue
         end
-        
+
+        if Player:IsFriendsWith(game.LocalPlayer.UserId) and Toggles.friendCheck then
+            break
+        end
+
+        if Player:IsInGroup(Options.groupID) then
+            break 
+        end
+
+        if Player.Team.Name == Options.teamCheckID then
+            break
+        end
+
         local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
         local Humanoid = FindFirstChild(Character, "Humanoid")
 
@@ -403,7 +418,7 @@ elseif Method == "Pixel" and Options.Method.Value == Method then
         end
     end
 elseif Method == "Criminality" and Options.Method.Value == Method then  
-    if ValidateArguments(Arguments, ExpectedArguments.Criminality) then
+    if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithWhitelist) then
         local A_Ray = Arguments[2]
 
         local HitPart = getClosestPlayer()
