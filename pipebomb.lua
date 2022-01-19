@@ -10,7 +10,7 @@ Library.AccentColor = Color3.fromRGB(222, 37, 0)
 Library.OutlineColor = Color3.fromRGB(10, 10, 10)
 Library.MainColor = Color3.fromRGB(18, 18, 18)
 Library.FontColor = Color3.fromRGB(217, 210, 210)
-Library:Notify("HvH Any % Aim Solutions skip", 13)
+Library:Notify("Come out with your hands visible, there are several federal agents surrounding your place of residence.", 13)
 
 local Functions =  {
 
