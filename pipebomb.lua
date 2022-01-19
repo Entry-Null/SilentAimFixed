@@ -76,9 +76,6 @@ local function getClosestPlayer()
         if Player == LocalPlayer then
             continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
         end
-        if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then
-            continue
-        end
 
         local Character = Player.Character
 
