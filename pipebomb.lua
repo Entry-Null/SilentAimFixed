@@ -92,12 +92,8 @@ if not syn or not protectgui then
                 break
             end
 
-            if Player:IsInGroup(Options.groupID) then
+            if Player:IsInGroup(Options.groupID) and Toggles.groupCheck then
                 break 
-            end
-
-            if Player.Team.Name == Options.teamCheckID then
-                break
             end
 
             local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
