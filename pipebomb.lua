@@ -89,11 +89,11 @@ if not syn or not protectgui then
             end
 
             if Player:IsFriendsWith(game.LocalPlayer.UserId) and Toggles.friendCheck then
-                break
+                continue
             end
 
             if Player:IsInGroup(Options.groupID) and Toggles.groupCheck then
-                break 
+                continue 
             end
 
             local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
