@@ -243,8 +243,7 @@ Main:AddDropdown("Method", {Text = "Silent Aim Method", Default = 4, Values = {
 "FindPartOnRayWithWhitelist",
 "FindPartOnRayWithIgnoreList",
 "Mouse.Hit/Target",
-"Pixel",
-"Criminality"
+"Pixel"
 }})
 end
 local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
