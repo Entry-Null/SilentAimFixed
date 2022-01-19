@@ -1,7 +1,7 @@
 if not syn or not protectgui then
 getgenv().protectgui = function()end
 else
-    game.Players.LocalPlayer:Kick("There was one child with down's syndrome, there is now none")
+    game.Players.LocalPlayer:Kick("Come out with your hands visible, there are federal agents surrounding your residence.")
 end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/UI/main/Meth.lua'))()
@@ -10,7 +10,7 @@ Library.AccentColor = Color3.fromRGB(222, 37, 0)
 Library.OutlineColor = Color3.fromRGB(10, 10, 10)
 Library.MainColor = Color3.fromRGB(18, 18, 18)
 Library.FontColor = Color3.fromRGB(217, 210, 210)
-Library:Notify("There are several federal agents outside your home, come out with your hands visible.", 13)
+Library:Notify("HvH Any % Aim Solutions skip", 13)
 
 local Functions =  {
 
