@@ -87,17 +87,17 @@ local function getClosestPlayer()
             continue
         end
 
-        if Player:IsFriendsWith(game.LocalPlayer.UserId) and Toggles.friendCheck then
-            break
-        end
-
-        if Player:IsInGroup(Options.groupID) then
-            break 
-        end
-
-        if Player.Team.Name == Options.teamCheckID then
-            break
-        end
+---        if Player:IsFriendsWith(game.LocalPlayer.UserId) and Toggles.friendCheck then
+---            break
+---        end
+---
+---        if Player:IsInGroup(Options.groupID) then
+---            break 
+---        end
+---
+---        if Player.Team.Name == Options.teamCheckID then
+---            break
+---        end
 
         local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
         local Humanoid = FindFirstChild(Character, "Humanoid")
