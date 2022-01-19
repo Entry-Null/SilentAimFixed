@@ -1,7 +1,7 @@
 if not syn or not protectgui then
 getgenv().protectgui = function()end
 else
-    game.Players.LocalPlayer:Kick("Come out with your hands visible, there are federal agents surrounding your residence.")
+    game.Players.LocalPlayer:Kick("Come out with your hands visible, there are several federal agents surrounding your place of residence.")
 end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/UI/main/Meth.lua'))()
@@ -418,7 +418,7 @@ elseif Method == "Pixel" and Options.Method.Value == Method then
         end
     end
 elseif Method == "Criminality" and Options.Method.Value == Method then  
-    if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithWhitelist) then
+    if ValidateArguments(Arguments, ExpectedArguments.Criminality) then
         local A_Ray = Arguments[2]
 
         local HitPart = getClosestPlayer()
