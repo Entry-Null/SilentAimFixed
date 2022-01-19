@@ -83,10 +83,23 @@ if not syn or not protectgui then
     
             local Character = Player.Character
     
+
             if not Character then
                 continue
             end
-    
+
+            if Player:IsFriendsWith(game.LocalPlayer.UserId) and Toggles.friendCheck then
+                break
+            end
+
+            if Player:IsInGroup(Options.groupID) then
+                break 
+            end
+
+            if Player.Team.Name == Options.teamCheckID then
+                break
+            end
+
             local HumanoidRootPart = FindFirstChild(Character, "HumanoidRootPart")
             local Humanoid = FindFirstChild(Character, "Humanoid")
     
@@ -199,7 +212,7 @@ if not syn or not protectgui then
     
     
     AntiAim:AddToggle("aaing", {Text = "Enabled"}):OnChanged(function()
-        Library.Notify("Arsenal Only", 10)
+        Library.Notify("Arsenal Only")
      end)
     
     AntiAim:AddToggle("hitbox", {Text = "Small Hitbox"})
@@ -213,6 +226,19 @@ if not syn or not protectgui then
     local Main = MainBOX:AddTab("Main")
     Main:AddToggle("aim_Enabled", {Text = "Enabled"})
     Main:AddToggle("TeamCheck", {Text = "Team Check"})
+    Main:AddToggle("friendCheck", {Text = "Friend Check"}):OnChanged(function()
+        Library.Notify("Friends no longer targeted.")
+     end)
+    Main:AddToggle("groupCheck", {Text = "Group Check"}):OnChanged(function()
+        Library.Notify("Players in : '"..Options.groupID .. "' will no longer be targeted.")
+     end)
+    Main:AddInput("groupID", {Text = "Group Check ID", Default = "Group ID"})
+
+    Main:AddInput("teamCheckID", {Text = "Whitelist Team", Default = "Team name"}):OnChanged(function()
+        Library.Notify("Players on the team : '"..Options.teamCheckID .. "' will no longer be targeted.")
+    end)
+
+
     Main:AddDropdown("TargetPart", {Text = "Legit Part", Default = 1, Values = {
     "HumanoidRootPart", "Head"
     }})
@@ -221,7 +247,8 @@ if not syn or not protectgui then
     "FindPartOnRayWithWhitelist",
     "FindPartOnRayWithIgnoreList",
     "Mouse.Hit/Target",
-    "Pixel"
+    "Pixel",
+    "Criminality"
     }})
     end
     local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
@@ -308,6 +335,15 @@ if not syn or not protectgui then
                 "Ray",
                 "table",
                 "boolean",
+                "boolean"
+            }
+        },
+        Criminality = {
+            ArgCountRequired = 3,
+            Args = {
+                "Instance",
+                "Ray",
+                "table",
                 "boolean"
             }
         }
