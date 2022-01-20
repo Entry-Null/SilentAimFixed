@@ -76,6 +76,9 @@ local function getClosestPlayer()
         if Player == LocalPlayer then
             continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
         end
+        if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then
+            continue
+        end
 
         local Character = Player.Character
 
@@ -111,7 +114,7 @@ local function getClosestPlayer()
 end
 
 
-local Window = Library:CreateWindow("methamphetamine")
+local Window = Library:CreateWindow("🤓: 'guys how is he hitting me!11'")
 
 local GeneralTab = Window:AddTab("Aimbot")
 local MainBOX = GeneralTab:AddLeftTabbox("Main")
@@ -212,15 +215,24 @@ local Main = MainBOX:AddTab("Main")
 local MainChecks = MainBOX2:AddTab("Checks")
 
 Main:AddToggle("aim_Enabled", {Text = "Enabled"})
+MainChecks:AddToggle("TeamCheck", {Text = "Team Check"})
+MainChecks:AddToggle("friendCheck", {Text = "Friend Check"})
+MainChecks:AddToggle("groupCheck", {Text = "Group Check"})
+MainChecks:AddInput("groupID", {Text = "Group Check ID", Default = "Group ID"})
+
+MainChecks:AddInput("teamCheckID", {Text = "Whitelist Team", Default = "Team name"})
+
 
 Main:AddDropdown("TargetPart", {Text = "Legit Part", Default = 1, Values = {
 "HumanoidRootPart", "Head"
 }})
 Main:AddDropdown("Method", {Text = "Silent Aim Method", Default = 4, Values = {
 "Raycast","FindPartOnRay",
-"Whitelist",
-"IgnoreList",
-"Mouse.Hit"
+"FindPartOnRayWithWhitelist",
+"FindPartOnRayWithIgnoreList",
+"Mouse.Hit/Target",
+"Pixel",
+"Criminality"
 }})
 end
 local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
@@ -381,7 +393,7 @@ elseif Method == "Raycast" and Options.Method.Value == Method then
         end
     end
 elseif Method == "Pixel" and Options.Method.Value == Method then  
-    if ValidateArguments(Arguments, ExpectedArguments.Pixel) then
+    if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithIgnoreList) then
         local A_Ray = Arguments[2]
 
         local HitPart = getClosestPlayer()
@@ -394,7 +406,7 @@ elseif Method == "Pixel" and Options.Method.Value == Method then
         end
     end
 elseif Method == "Criminality" and Options.Method.Value == Method then  
-    if ValidateArguments(Arguments, ExpectedArguments.Criminality) then
+    if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithWhitelist) then
         local A_Ray = Arguments[2]
 
         local HitPart = getClosestPlayer()
