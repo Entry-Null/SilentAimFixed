@@ -76,14 +76,7 @@ local function getClosestPlayer()
         if Player == LocalPlayer then
             continue -- omg who the fuck uses math reroutes note to original silent aim creator: dont use that use continue
         end
-        if Toggles.TeamCheck.Value and Player.Team == LocalPlayer.Team then
-            continue
-        end
 
-        if Toggles.friendCheck.Value and Player:IsFriendsWith(game.Players.LocalPlayer.UserId) then
-            continue
-        end
-                
         local Character = Player.Character
 
 
@@ -219,9 +212,6 @@ local Main = MainBOX:AddTab("Main")
 local MainChecks = MainBOX2:AddTab("Checks")
 
 Main:AddToggle("aim_Enabled", {Text = "Enabled"})
-Main:AddToggle("TeamCheck", {Text = "Team Check"})
-Main:AddToggle("friendCheck", {Text = "Friend Check"})
-
 
 Main:AddDropdown("TargetPart", {Text = "Legit Part", Default = 1, Values = {
 "HumanoidRootPart", "Head"
