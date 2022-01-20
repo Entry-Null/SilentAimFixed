@@ -218,11 +218,9 @@ Main:AddDropdown("TargetPart", {Text = "Legit Part", Default = 1, Values = {
 }})
 Main:AddDropdown("Method", {Text = "Silent Aim Method", Default = 4, Values = {
 "Raycast","FindPartOnRay",
-"FindPartOnRayWithWhitelist",
-"FindPartOnRayWithIgnoreList",
-"Mouse.Hit/Target",
-"Pixel",
-"Criminality"
+"Whitelist",
+"IgnoreList",
+"Mouse.Hit"
 }})
 end
 local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
