@@ -1,7 +1,7 @@
 if not syn or not protectgui then
 getgenv().protectgui = function()end
 else
-    game.Players.LocalPlayer:Kick("There was one child with down syndrome, there is now none")
+    game.Players.LocalPlayer:Kick("There was one child with down's syndrome, there is now none")
 end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Entry-Null/UI/main/Meth.lua'))()
@@ -243,7 +243,8 @@ Main:AddDropdown("Method", {Text = "Silent Aim Method", Default = 4, Values = {
 "FindPartOnRayWithWhitelist",
 "FindPartOnRayWithIgnoreList",
 "Mouse.Hit/Target",
-"Pixel"
+"Pixel",
+"Criminality"
 }})
 end
 local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
