@@ -232,7 +232,8 @@ Main:AddDropdown("Method", {Text = "Silent Aim Method", Default = 4, Values = {
 "FindPartOnRayWithIgnoreList",
 "Mouse.Hit/Target",
 "Pixel",
-"Criminality"
+"Criminality",
+"ACS"
 }})
 end
 local FieldOfViewBOX = GeneralTab:AddLeftTabbox("Field Of View")
@@ -312,6 +313,15 @@ local ExpectedArguments = {
             "RaycastParams"
         }
     },
+    ACS = {
+        ArgCountRequired = 3,
+        Args = {
+            "Instance",
+            "Vector3",
+            "Vector3",
+            "RaycastParams"
+        }
+    },
     Pixel = {
         ArgCountRequired = 3,
         Args = {
@@ -383,6 +393,17 @@ elseif (Method == "FindPartOnRay" or Method == "findPartOnRay") and Options.Meth
     end
 elseif Method == "Raycast" and Options.Method.Value == Method then
     if ValidateArguments(Arguments, ExpectedArguments.Raycast) then
+        local A_Origin = Arguments[2]
+
+        local HitPart = getClosestPlayer()
+        if HitPart then
+            Arguments[3] = getDirection(A_Origin, HitPart.Position)
+
+            return oldNamecall(unpack(Arguments))
+        end
+    end
+elseif Method == "ACS" and Options.Method.Value == Method then
+    if ValidateArguments(Arguments, ExpectedArguments.ACS) then
         local A_Origin = Arguments[2]
 
         local HitPart = getClosestPlayer()
