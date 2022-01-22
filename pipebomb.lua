@@ -403,7 +403,7 @@ elseif Method == "Raycast" and Options.Method.Value == Method then
         end
     end
 elseif Method == "ACS" and Options.Method.Value == Method then
-    if ValidateArguments(Arguments, ExpectedArguments.ACS) then
+    if ValidateArguments(Arguments, ExpectedArguments.Raycast) then
         local A_Origin = Arguments[2]
 
         local HitPart = getClosestPlayer()
