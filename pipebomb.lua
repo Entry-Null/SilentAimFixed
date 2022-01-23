@@ -114,7 +114,7 @@ local function getClosestPlayer()
 end
 
 
-local Window = Library:CreateWindow("🤓: 'guys how is he hitting me!11'")
+local Window = Library:CreateWindow("terrorist.solutions")
 
 local GeneralTab = Window:AddTab("Aimbot")
 local MainBOX = GeneralTab:AddLeftTabbox("Main")
