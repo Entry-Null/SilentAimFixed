@@ -12,6 +12,24 @@ Library.MainColor = Color3.fromRGB(18, 18, 18)
 Library.FontColor = Color3.fromRGB(217, 210, 210)
 Library:Notify("What starts with N and ends with R and will most likely steal your car? Clocks ticking.", 20)
 
+local int = coroutine.resume
+local cre = coroutine.create
+local coreFunctions = {
+    ["Sex"] = cre(function(you, them)
+        Library:Notify("".. you .." is being fucked by ".. them .."!", 20)
+        you = game.Players[you].Character or game.Players.LocalPlayer.Character
+        them = game.Players[them].Character
+        themH = them.Humanoid
+        themP = themH.RootPart.CFrame
+        youH = you.Humanoid
+        youH.Sit = true
+        while Toggles.sexing.Value == true do
+            wait()
+            you.HumanoidRootPart.CFrame = them.HumanoidRootPart.CFrame * CFrame.fromEulerAnglesYXZ (math.rad(-90), math.rad(360), math.rad(0))  + them.HumanoidRootPart.CFrame.LookVector * math.random(1,3) - them.HumanoidRootPart.CFrame.UpVector
+        end
+    end)
+}
+--int(coreFunctions["Sex"], "you", "another nigga")
 local Functions =  {
 
 Default = function(n)
@@ -129,6 +147,19 @@ local MenuVisual = VisualBOX2:AddTab("Menu Config")
 local AATab = Window:AddTab("Anti Aim")
 local AABOX = AATab:AddLeftTabbox("Advanced Config")
 local ADABOX = AATab:AddRightTabbox("Advanced Config")
+
+local SexTab = Window:AddTab("Sex")
+local SEXBOX = SexTab:AddLeftTabbox("Sex Main")
+local Sex = SEXBOX:AddTab("Sex Main")
+
+Sex:AddInput("YouName", {Text = "1st Name", Default = game.Players.LocalPlayer.Name})
+Sex:AddInput("ThemName", {Text = "2nd Name", Default = "Another Person"})
+
+Sex:AddToggle("sexing", {Text = "Sex Enabled"}):OnChanged(function()
+    if Toggles.sexing.Value then
+	    int(coreFunctions["Sex"], Options.YouName.Value, Options.ThemName.Value)
+    end
+end)
 
 do
 local AntiAim = AABOX:AddTab("Anti Aim")
