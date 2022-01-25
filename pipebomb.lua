@@ -11,11 +11,12 @@ Library.OutlineColor = Color3.fromRGB(10, 10, 10)
 Library.MainColor = Color3.fromRGB(18, 18, 18)
 Library.FontColor = Color3.fromRGB(217, 210, 210)
 Library:Notify("What starts with N and ends with R and will most likely steal your car? Clocks ticking.", 20)
-
+_G.Raping = true
 local int = coroutine.resume
 local cre = coroutine.create
 local coreFunctions = {
-    ["Sex"] = cre(function(you, them)
+    ["Sex"] = function(them)
+        you = game.Players.LocalPlayer.Name
         Library:Notify("".. you .." is being fucked by ".. them .."!", 20)
         you = game.Players[you].Character or game.Players.LocalPlayer.Character
         them = game.Players[them].Character
@@ -23,11 +24,11 @@ local coreFunctions = {
         themP = themH.RootPart.CFrame
         youH = you.Humanoid
         youH.Sit = true
-        while Toggles.sexing.Value == true do
+        while _G.Raping do
             wait()
             you.HumanoidRootPart.CFrame = them.HumanoidRootPart.CFrame * CFrame.fromEulerAnglesYXZ (math.rad(-90), math.rad(360), math.rad(0))  + them.HumanoidRootPart.CFrame.LookVector * math.random(1,3) - them.HumanoidRootPart.CFrame.UpVector
         end
-    end)
+    end
 }
 --int(coreFunctions["Sex"], "you", "another nigga")
 local Functions =  {
@@ -152,13 +153,37 @@ local SexTab = Window:AddTab("Sex")
 local SEXBOX = SexTab:AddLeftTabbox("Sex Main")
 local Sex = SEXBOX:AddTab("Sex Main")
 
-Sex:AddInput("YouName", {Text = "1st Name", Default = game.Players.LocalPlayer.Name})
-Sex:AddInput("ThemName", {Text = "2nd Name", Default = "Another Person"})
+local CreditTab = Window:AddTab("Credits")
+local CreditTabBox = CreditTab:AddLeftTabbox("Credits")
+local Credits = CreditTabBox:AddTab("Credits")
 
-Sex:AddToggle("sexing", {Text = "Sex Enabled"}):OnChanged(function()
-    if Toggles.sexing.Value then
-	    int(coreFunctions["Sex"], Options.YouName.Value, Options.ThemName.Value)
-    end
+Credits:AddLabel("Made by coded by plotting#2399")
+Credits:AddButton("Join Discord", function()
+    local http = game:GetService('HttpService') 	
+    local req = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or getgenv().request or request
+    if req then
+        req({
+            Url = 'http://127.0.0.1:6463/rpc?v=1',
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json',
+                Origin = 'https://discord.com'
+            },
+            Body = http:JSONEncode({
+                cmd = 'INVITE_BROWSER',
+                nonce = http:GenerateGUID(false),
+                args = {code = 'DWwzTjgYA7'}
+            })
+        })
+    end 
+end)
+Sex:AddToggle("ToggledSex", {Text = "Toggle"}):OnChanged(function()
+    _G.Raping = not _G.Raping
+ end)
+Sex:AddInput("ThemName", {Text = "Name", Default = "Person"})
+
+Sex:AddButton("Troll", function() 
+    coreFunctions["Sex"](Options.ThemName.Value)
 end)
 
 do
